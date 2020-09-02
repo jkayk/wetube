@@ -14,7 +14,7 @@ const CHANGE_PASSWORD = "/change-password";
 //videos
 const VIDEOS = "/videos";
 const UPLOAD = "/upload";
-const VIDEO_DETAIL = "/:id"; //: shows that it will change to the "id"
+const VIDEO_DETAIL = "/:id"; //: shows that it will change to whatever the "id" is
 const EDIT_VIDEO = "/:id/edit";
 const DELETE_VIDEO = "/:id/delete";
 
