@@ -1,4 +1,11 @@
 extends layouts/main
 
 block content
-    p upload
+    .form-container
+        form(action=`/vidoes${routes.upload}`, method="post")
+            label(for="file") Video Fi le 
+            input(type="file" id="file" name="video") 
+            input(type="text" placeholder="Title" name="title")
+            textarea(placeholder="Description" name="description")
+            input(type="submit" value="Upload Video")
+
