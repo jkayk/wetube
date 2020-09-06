@@ -1,7 +1,15 @@
 import routes from "../routes";
+import Video from "../models/Video";
 
-export const home = (req, res) => {
-  res.render("home", { pageTitle: "Home", videos });
+export const home = async (req, res) => {
+  //async is something that waits for you
+  try {
+    const videos = await Video.find({}); //await to show what you're wating for
+    res.render("home", { pageTitle: "Home", videos }); //this will happen when the above is finisehd even if not successful
+  } catch (error) {
+    console.log(error);
+    res.render("home", { pageTitle: "Home", videos: [] }); //still show something even if there's an error
+  }
 };
 
 export const search = (req, res) => {
@@ -15,11 +23,11 @@ export const search = (req, res) => {
 export const getUpload = (req, res) =>
   res.render("upload", { pageTitle: "Upload" });
 export const postUpload = (req, res) => {
-  const {
-    body: { file, title, description },
-  } = req;
+  const { body } = req;
+  consolne.log(body);
+  res.render("upload", { pageTitle: "Upload" });
   // to do: upload and save video
-  res.redirect(routes.videoDetail(234235236));
+  // res.redirect(routes.videoDetail(234235236));
 };
 
 export const videoDetail = (req, res) =>
