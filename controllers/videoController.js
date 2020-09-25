@@ -14,12 +14,20 @@ export const home = async (req, res) => {
 };
 
 //Search
-export const search = (req, res) => {
+export const search = async (req, res) => {
   const {
     query: { term: searchingBy },
   } = req;
   //the above is same as const searchingBy = req.query.term;
-  res.render("search", { pageTitle: "Search", searchingBy });
+  let videos = [];
+  try {
+    videos = await Video.find({
+      title: { $regex: searchingBy, $options: "i" }, //i means case-insensitive
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  res.render("search", { pageTitle: "Search", searchingBy, videos });
 };
 
 //Upload
